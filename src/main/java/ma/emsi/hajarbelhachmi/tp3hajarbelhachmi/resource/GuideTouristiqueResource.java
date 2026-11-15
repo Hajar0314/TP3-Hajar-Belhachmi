@@ -38,6 +38,13 @@ public class GuideTouristiqueResource {
 
         String reponseJson = llmClient.guider(villeOuPays, nb);
 
-        return Response.ok(reponseJson).build();
+        Response.ResponseBuilder responseBuilder = Response.ok(reponseJson);
+
+        responseBuilder.header("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0");
+        responseBuilder.header("Pragma", "no-cache");
+        responseBuilder.header("Expires", "0");
+        responseBuilder.header("Access-Control-Allow-Origin", "*");
+
+        return responseBuilder.build();
     }
 }
