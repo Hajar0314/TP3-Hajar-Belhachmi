@@ -39,7 +39,7 @@ public class LlmClientForGuideTouristique implements Serializable {
      * @param lieu ville ou pays
      * @return la réponse du LLM (JSON sous forme de String)
      */
-    public String guider(String lieu) {
-        return guideTouristique.guider(lieu);
+    public String guider(String lieu, int nb) {
+        return guideTouristique.guider(lieu, nb);
     }
 }

@@ -1,9 +1,12 @@
+
 package ma.emsi.hajarbelhachmi.tp3hajarbelhachmi.resource;
 
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.QueryParam;
+import jakarta.ws.rs.DefaultValue;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -23,13 +26,18 @@ public class GuideTouristiqueResource {
      * ainsi que le prix moyen d'un repas, en JSON.
      *
      * @param villeOuPays le nom de la ville ou du pays
+     * @param nb le nombre d'endroits à visiter (2 par défaut)
      * @return une réponse HTTP contenant le document JSON du LLM
      */
     @GET
     @Path("lieu/{ville_ou_pays}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response endroitsDeVisite(@PathParam("ville_ou_pays") String villeOuPays) {
-        String reponseJson = llmClient.guider(villeOuPays);
+    public Response endroitsDeVisite(
+            @PathParam("ville_ou_pays") String villeOuPays,
+            @QueryParam("nb") @DefaultValue("2") int nb) {
+
+        String reponseJson = llmClient.guider(villeOuPays, nb);
+
         return Response.ok(reponseJson).build();
     }
 }
