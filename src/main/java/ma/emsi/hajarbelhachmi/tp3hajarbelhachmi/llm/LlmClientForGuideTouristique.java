@@ -25,9 +25,9 @@ public class LlmClientForGuideTouristique implements Serializable {
 
         ChatModel model = GoogleAiGeminiChatModel.builder()
                 .apiKey(key)
-                .modelName("gemini-2.5-flash") // mettez le modèle utilisé dans votre TP2
+                .modelName("gemini-3.5-flash-lite")
                 .temperature(0.3)
-                .responseFormat(ResponseFormat.JSON) // évite le Markdown
+                .responseFormat(ResponseFormat.JSON)
                 .logRequestsAndResponses(true)
                 .build();
 
